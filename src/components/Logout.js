@@ -4,14 +4,14 @@ import {auth } from './utils/firebaseConfig'
 
 
 const Logout = () => {
-    
-  const [user,setUser] = useState({}); 
+
+  const [user,setUser] = useState({});
     useEffect(() => {
 
         onAuthStateChanged(auth, (currentUser) => {
-    
+
             setUser(currentUser);
-    
+
         });
       },[])
     const logout = async ()=>{
@@ -23,7 +23,7 @@ const Logout = () => {
             {user ? user.email : "Not Logged In"}
 
             <button onClick={logout}>Sign Out</button>
-            <a href="/register">REginn</a>
+
     </div>
   )
 }
