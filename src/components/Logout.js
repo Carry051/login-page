@@ -1,6 +1,7 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react'
-import { auth } from './firebase-config';
+import {auth } from './utils/firebaseConfig'
+
 
 const Logout = () => {
     
@@ -22,7 +23,7 @@ const Logout = () => {
             {user ? user.email : "Not Logged In"}
 
             <button onClick={logout}>Sign Out</button>
-            <a href="/">Login</a>
+            <a href="/register">REginn</a>
     </div>
   )
 }

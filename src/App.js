@@ -73,6 +73,9 @@ const App = () => {
       <div className ="App">
         <div className="d-flex justify-content-center flex-column align-items-center " >
           
+           <BrowserRouter>
+            <Routing/>
+           </BrowserRouter>
             {/* <h3 className="mt-5"> Register user </h3>
             <input placeholder="Email..." onChange={(event)=>{
               setRegisterEmail(event.target.value)
@@ -88,9 +91,6 @@ const App = () => {
 
             <button onClick={register}> Create User </button>
            */}
-           <BrowserRouter>
-            <Routing/>
-           </BrowserRouter>
           
         
          
