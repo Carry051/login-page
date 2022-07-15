@@ -1,46 +1,44 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import React, { useState } from 'react'
-import {auth } from './utils/firebaseConfig'
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import React, { useState } from "react";
+import { auth } from "./firebase-config";
 
 const Register = () => {
-  const [registerEmail , setRegisterEmail] = useState("");
-  const [registerPassword , setRegisterPassword] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
 
-  const register  = async ()=>{
-    
-    try { 
-      const user =  await createUserWithEmailAndPassword(
+  const register = async () => {
+    try {
+      const user = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
-        
-        );
+      );
       console.log(user);
-    } catch(error){
+    } catch (error) {
       console.log(error.message);
     }
-  
   };
 
   return (
-        <div>
-            <h3 className="mt-5"> Register user </h3>
-            <input placeholder="Email..." onChange={(event)=>{
-              setRegisterEmail(event.target.value)
-              
-            }}
-              />
-            <input placeholder="Password..." 
-            onChange={(event)=>{
-              setRegisterPassword(event.target.value)
-              
-            }}
-            />
+    <div>
+      <h3 className="mt-5"> Register user </h3>
+      <input
+        placeholder="Email..."
+        onChange={(event) => {
+          setRegisterEmail(event.target.value);
+        }}
+      />
+      <input
+        placeholder="Password..."
+        onChange={(event) => {
+          setRegisterPassword(event.target.value);
+        }}
+      />
 
-            <button onClick={register}> Create User </button>
-            <a href="/">Login</a>
-        </div>
-  )
-}
+      <button onClick={register}> Create User </button>
+      <a href="/">Login</a>
+    </div>
+  );
+};
 
-export default Register
+export default Register;

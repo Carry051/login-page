@@ -1,39 +1,37 @@
-import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 
+import { auth, onAuthStateChanged } from "./firebase-config";
 
-import { privateRoutes, publicRoutes } from './utils/routis'
-import { LOGIN_PAGE, LOGOUT_PAGE } from './utils/consts'
+import Login from "./Login";
+import Logout from "./Logout";
+import Register from "./Register";
 
 const Routing = () => {
-    
-    const user = false;
-  
- 
-  return user ? 
-  (
-        <Routes>
-            {privateRoutes.map(({path, Component}) =>
-                <Route key={path} path={path} element={<Component/>} exact={true} />
-                
-            )}  
-            <Route path='*' element={<Navigate to={LOGOUT_PAGE} replace />} />
-           
-        </Routes>
-  
-  )
-: (
-  <Routes>
-            {publicRoutes.map(({path, Component}) => 
-                <Route key={path} path={path} element={<Component />} exact={true}/>
-            )}
-        <Route path='*' element={<Navigate to={LOGIN_PAGE} replace />} />
-        
-    </Routes>)
-    
+  const [user, setUser] = useState(null);
 
+  onAuthStateChanged(auth, (user) => {
+    try {
+      // const currentUser = firebase.auth().currentUser
+      setUser(user);
+    } catch (error) {}
+  });
 
-  
+  if (user)
+    return (
+      <Routes>
+        <Route path={"/logout"} element={<Logout />} exact={true} />
+        <Route path="*" element={<Navigate to={"/logout"} replace />} />
+      </Routes>
+    );
 
-}
-export default Routing
+  return (
+    <Routes>
+      <Route path={"/login"} element={<Login />} exact={true} />
+      <Route path={"/register"} element={<Register />} exact={true} />
+      <Route path="*" element={<Navigate to={"/login"} replace />} />
+    </Routes>
+  );
+};
+
+export default Routing;
