@@ -18,22 +18,41 @@ const Login = () => {
     }
   };
   return (
-    <div>
-      <h3 className="mt-5">Login</h3>
+    <div className="d-flex flex-column ">
+      <h3 className="mt-5 text-center">Login</h3>
       <input
+        className="form-control my-2 border-1 border-primary "
         placeholder="Email..."
         onChange={(event) => {
           setLoginEmail(event.target.value);
         }}
       />
       <input
+        className="form-control mb-3 border-1 border-primary"
         placeholder="Password..."
         onChange={(event) => {
           setLoginPassword(event.target.value);
         }}
       />
-      <button onClick={login}> Login </button>
-      <a href="/register">Register</a>
+      <button 
+        className="btn btn-primary fs-5" 
+        onClick={login}
+        > Login 
+      </button>
+      
+      <div className="d-flex flex-column text-center mt-3 ">
+        <a 
+          href="/register" 
+          className="text-decoration-none fs-5"
+          > Register
+        </a>
+        <a 
+          href="/forgot" 
+          className="text-decoration-none fs-5"
+          > Forgot Password?
+        </a>
+      </div>
+      
     </div>
   );
 };

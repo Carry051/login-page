@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { auth, onAuthStateChanged } from "./firebase-config";
+import ForgotPass from "./ForgotPass";
 
 import Login from "./Login";
 import Logout from "./Logout";
@@ -27,6 +28,7 @@ const Routing = () => {
 
   return (
     <Routes>
+      <Route path={"/forgot"} element={<ForgotPass/>} exact={true} />
       <Route path={"/login"} element={<Login />} exact={true} />
       <Route path={"/register"} element={<Register />} exact={true} />
       <Route path="*" element={<Navigate to={"/login"} replace />} />
